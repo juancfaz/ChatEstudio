@@ -71,16 +71,22 @@ function authMiddleware(req, res, next) {
 // Chat con Gemini
 app.post("/api/chat", authMiddleware, async (req, res) => {
   try {
-    const { message, subject } = req.body;
+    const { message, subject, mode } = req.body;
+
+    const modeText = mode === "resumen"
+      ? "Responde de forma breve y directa, resaltando los puntos clave."
+      : mode === "ejercicio"
+      ? "Genera 3 ejercicios prácticos relacionados con la pregunta, con la dificultad adaptada a un estudiante de preparatoria/universidad. No des la respuesta, solo los enunciados."
+      : "Explica paso a paso de forma detallada, usando ejemplos cuando sea posible.";
 
     const prompt = `
 Eres ChatEstudio, un tutor virtual para estudiantes de preparatoria y universidad.
-Tu misión es explicar de forma clara, paciente y paso a paso.
-La materia seleccionada por el estudiante es: ${subject}.
+Materia seleccionada: ${subject}.
+Modo de respuesta: ${mode}.
 
-Si la pregunta no pertenece claramente a esa materia, di que se debe seleccionar la materia correcta.
+Si la pregunta no pertenece claramente a la materia seleccionada, indica que el usuario debe seleccionar la materia correcta.
 
-Responde adaptando el nivel y ejemplos a esta materia.
+${modeText}
 
 Pregunta del estudiante: ${message}
     `;
@@ -88,7 +94,6 @@ Pregunta del estudiante: ${message}
     const result = await model.generateContent(prompt);
     const reply = result.response.text();
 
-    // Guardar en historial
     await db.run(
       "INSERT INTO chat_history (user_id, subject, question, answer) VALUES (?, ?, ?, ?)",
       [req.user.id, subject, message, reply]
@@ -100,6 +105,7 @@ Pregunta del estudiante: ${message}
     res.status(500).json({ reply: "Ocurrió un error al procesar tu pregunta." });
   }
 });
+
 
 // Obtener historial
 app.get("/api/history", authMiddleware, async (req, res) => {

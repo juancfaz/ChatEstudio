@@ -9,7 +9,9 @@ const chatDiv = document.getElementById("chat");
 const historyDiv = document.getElementById("history");
 const logoutBtn = document.getElementById("logoutBtn");
 
+
 let token = null;
+
 
 // Función para agregar mensajes al chat
 function addMessage(who, text, className) {
@@ -90,6 +92,7 @@ chatForm.addEventListener("submit", async (e) => {
 
   const message = messageInput.value.trim();
   const subject = subjectSelect.value;
+  const mode = document.getElementById("mode").value;
 
   if (!message) return;
 
@@ -101,7 +104,7 @@ chatForm.addEventListener("submit", async (e) => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ message, subject }),
+    body: JSON.stringify({ message, subject, mode }),
   });
   const data = await res.json();
   addMessage("ChatEstudio", data.reply, "bot");
