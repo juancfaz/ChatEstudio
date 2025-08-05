@@ -7,50 +7,61 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="authSection">
+
+  <!-- Sección de Autenticación -->
+  <div id="authSection" class="auth-container">
     <h2>Registro</h2>
-    <form id="registerForm">
+    <form id="registerForm" class="auth-form">
       <input type="text" id="registerUsername" placeholder="Usuario" required />
       <input type="password" id="registerPassword" placeholder="Contraseña" required />
       <button type="submit">Registrar</button>
     </form>
 
     <h2>Login</h2>
-    <form id="loginForm">
+    <form id="loginForm" class="auth-form">
       <input type="text" id="loginUsername" placeholder="Usuario" required />
       <input type="password" id="loginPassword" placeholder="Contraseña" required />
       <button type="submit">Entrar</button>
     </form>
   </div>
 
-  <div id="chatSection" style="display:none;">
-    <h1>Bienvenido a ChatEstudio</h1>
-    <label for="subject">Selecciona la materia:</label>
-    <select id="subject">
-      <option value="Matemáticas">Matemáticas</option>
-      <option value="Inglés">Inglés</option>
-      <option value="Programación">Programación</option>
-    </select>
+  <!-- Sección del Chat -->
+  <div id="chatSection" class="chat-container" style="display:none;">
 
-    <label for="mode">Modo de respuesta:</label>
-    <select id="mode">
-    <option value="detallado">📚 Explicación detallada</option>
-    <option value="resumen">📝 Resumen</option>
-    <option value="ejercicio">🎯 Ejercicio</option>
-    </select>
+    <header class="chat-header">
+      Bienvenido a ChatEstudio 💬
+    </header>
 
+    <!-- Controles -->
+    <div class="controls">
+      <select id="subject">
+        <option value="Matemáticas">📐 Matemáticas</option>
+        <option value="Inglés">🇬🇧 Inglés</option>
+        <option value="Programación">💻 Programación</option>
+      </select>
 
-    <form id="chatForm">
+      <select id="mode">
+        <option value="detallado">📚 Explicación detallada</option>
+        <option value="resumen">📝 Resumen</option>
+        <option value="ejercicio">🎯 Ejercicio</option>
+      </select>
+    </div>
+
+    <!-- Área de Chat -->
+    <div id="chat" class="chat-box"></div>
+
+    <!-- Formulario de envío -->
+    <form id="chatForm" class="chat-form">
       <input type="text" id="messageInput" placeholder="Escribe tu pregunta..." required />
       <button type="submit">Enviar</button>
     </form>
 
-    <div id="chat"></div>
-
+    <!-- Historial -->
     <h2>Historial de tus preguntas</h2>
-    <div id="history"></div>
+    <div id="history" class="history-box"></div>
 
-    <button id="logoutBtn">Cerrar sesión</button>
+    <!-- Botón de Logout -->
+    <button id="logoutBtn" class="logout-btn">Cerrar sesión</button>
   </div>
 
   <script src="app.js"></script>

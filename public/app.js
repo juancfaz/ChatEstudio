@@ -5,30 +5,31 @@ const chatSection = document.getElementById("chatSection");
 const chatForm = document.getElementById("chatForm");
 const messageInput = document.getElementById("messageInput");
 const subjectSelect = document.getElementById("subject");
+const modeSelect = document.getElementById("mode");
 const chatDiv = document.getElementById("chat");
 const historyDiv = document.getElementById("history");
 const logoutBtn = document.getElementById("logoutBtn");
 
-
 let token = null;
 
-
-// Función para agregar mensajes al chat
-function addMessage(who, text, className) {
-  const p = document.createElement("p");
-  p.className = className;
-  p.innerHTML = `<strong>${who}:</strong> ${text}`;
-  chatDiv.appendChild(p);
+// Agregar mensajes al chat con formato
+function addMessage(sender, text) {
+  const msg = document.createElement("div");
+  msg.classList.add("chat-message");
+  msg.classList.add(sender === "user" ? "user" : "bot");
+  msg.textContent = text;
+  chatDiv.appendChild(msg);
   chatDiv.scrollTop = chatDiv.scrollHeight;
 }
 
-// Mostrar sección según login/logout
+// Mostrar chat tras login
 function showChat() {
   authSection.style.display = "none";
   chatSection.style.display = "block";
   loadHistory();
 }
 
+// Mostrar login/registro tras logout
 function showAuth() {
   authSection.style.display = "block";
   chatSection.style.display = "none";
@@ -48,6 +49,7 @@ registerForm.addEventListener("submit", async (e) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password }),
   });
+
   const data = await res.json();
   alert(data.message || data.error);
   if (data.message) {
@@ -66,6 +68,7 @@ loginForm.addEventListener("submit", async (e) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password }),
   });
+
   const data = await res.json();
   if (data.token) {
     token = data.token;
@@ -92,11 +95,11 @@ chatForm.addEventListener("submit", async (e) => {
 
   const message = messageInput.value.trim();
   const subject = subjectSelect.value;
-  const mode = document.getElementById("mode").value;
+  const mode = modeSelect.value;
 
   if (!message) return;
 
-  addMessage("Tú", `[${subject}] ${message}`, "user");
+  addMessage("user", `[${subject}] ${message}`);
 
   const res = await fetch("/api/chat", {
     method: "POST",
@@ -106,24 +109,25 @@ chatForm.addEventListener("submit", async (e) => {
     },
     body: JSON.stringify({ message, subject, mode }),
   });
+
   const data = await res.json();
-  addMessage("ChatEstudio", data.reply, "bot");
+  addMessage("bot", data.reply);
 
   messageInput.value = "";
 });
 
-// Cargar historial desde backend
+// Cargar historial
 async function loadHistory() {
   if (!token) return;
+
   const res = await fetch("/api/history", {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
+    headers: { Authorization: `Bearer ${token}` },
   });
+
   const data = await res.json();
   historyDiv.innerHTML = "";
 
-  if (data.length === 0) {
+  if (!data.length) {
     historyDiv.innerHTML = "<p>No hay historial guardado.</p>";
     return;
   }
@@ -140,5 +144,5 @@ async function loadHistory() {
   });
 }
 
-// Al cargar la página mostrar sección auth
+// Inicial
 showAuth();

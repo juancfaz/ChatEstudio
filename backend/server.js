@@ -80,15 +80,15 @@ app.post("/api/chat", authMiddleware, async (req, res) => {
       : "Explica paso a paso de forma detallada, usando ejemplos cuando sea posible.";
 
     const prompt = `
-Eres ChatEstudio, un tutor virtual para estudiantes de preparatoria y universidad.
-Materia seleccionada: ${subject}.
-Modo de respuesta: ${mode}.
+    Eres ChatEstudio, un tutor virtual para estudiantes de preparatoria y universidad.
+    Materia seleccionada: ${subject}.
+    Modo de respuesta: ${mode}.
 
-Si la pregunta no pertenece claramente a la materia seleccionada, indica que el usuario debe seleccionar la materia correcta.
+    Si la pregunta no pertenece claramente a la materia seleccionada, indica que el usuario debe seleccionar la materia correcta.
 
-${modeText}
+    ${modeText}
 
-Pregunta del estudiante: ${message}
+    Pregunta del estudiante: ${message}
     `;
 
     const result = await model.generateContent(prompt);
