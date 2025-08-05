@@ -20,7 +20,3 @@ Estudiantes de preparatoria o universidad que cursan materias complicadas para l
 | Registro/Login         | Para guardar historial de estudio personalizado             |
 | Historial de preguntas | Ver qué ha preguntado el usuario anteriormente              |
 | Prompts dirigidos      | Adaptar la respuesta de la IA al contexto académico/materia |
-
-## 5️⃣ Nombre y tono del chatbot
-📛 **Nombre:** ChatEstudio  
-💬 **Tono:** Amigable, claro, paciente, y enfocado en explicar.
