@@ -1,0 +1,23 @@
+{
+  "name": "chatestudio",
+  "version": "1.0.0",
+  "description": "Ayudar a los estudiantes a repasar temas fuera del horario de clase, sin necesitar de un docente.  \r ChatEstudio estará disponible 24/7 para que el usuario pueda reforzar lo aprendido cuando quiera.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juancfaz/ChatEstudio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juancfaz/ChatEstudio/issues"
+  },
+  "homepage": "https://github.com/juancfaz/ChatEstudio#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
