@@ -17,15 +17,18 @@ const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 // Ruta POST para recibir mensajes y responder con Gemini
 app.post("/api/chat", async (req, res) => {
     try {
-        const userMessage = req.body.message;
+        const { message, subject } = req.body;
         
-        // Prompt para orientar la respuesta académica
         const prompt = `
         Eres ChatEstudio, un tutor virtual para estudiantes de preparatoria y universidad.
         Tu misión es explicar de forma clara, paciente y paso a paso.
-        Materias principales: Matemáticas, Inglés y Programación.
+        La materia seleccionada por el estudiante es: ${subject}.
+
+        Si la pregunta no pertenece claramente a esa materia, di que se debe seleccionar la materia correcta.
         
-        Pregunta del estudiante: ${userMessage}
+        Responde adaptando el nivel y ejemplos a esta materia.
+        
+        Pregunta del estudiante: ${message}
         `;
 
         const result = await model.generateContent(prompt);
@@ -37,6 +40,7 @@ app.post("/api/chat", async (req, res) => {
         res.status(500).json({ reply: "Ocurrió un error al procesar tu pregunta." });
     }
 });
+
 
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en http://localhost:${PORT}`);

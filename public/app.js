@@ -2,23 +2,22 @@ const chat = document.getElementById("chat");
 const chatForm = document.getElementById("chatForm");
 const messageInput = document.getElementById("message");
 
+const subjectSelect = document.getElementById("subject");
+
 chatForm.addEventListener("submit", async (e) => {
-    e.preventDefault(); // Evita que la página se recargue
+    e.preventDefault();
     const message = messageInput.value;
+    const subject = subjectSelect.value;
 
-    // Mostrar mensaje del usuario
-    addMessage("Tú", message, "user");
+    addMessage("Tú", `[${subject}] ${message}`, "user");
 
-    // Enviar mensaje al servidor
     const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message })
+        body: JSON.stringify({ message, subject })
     });
 
     const data = await res.json();
-
-    // Mostrar respuesta del bot
     addMessage("ChatEstudio", data.reply, "bot");
 
     messageInput.value = "";
