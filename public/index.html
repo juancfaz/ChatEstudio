@@ -3,9 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>ChatEstudio</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        #chat { border: 1px solid #ccc; padding: 10px; height: 300px; overflow-y: scroll; }
+        .message { margin: 5px 0; }
+        .user { color: blue; }
+        .bot { color: green; }
+    </style>
 </head>
 <body>
     <h1>Bienvenido a ChatEstudio</h1>
-    <p>Este será tu asistente para estudiar.</p>
+    <div id="chat"></div>
+
+    <form id="chatForm">
+        <input type="text" id="message" placeholder="Escribe tu pregunta..." required>
+        <button type="submit">Enviar</button>
+    </form>
+
+    <script src="app.js"></script>
 </body>
 </html>
