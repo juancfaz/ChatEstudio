@@ -43,9 +43,20 @@ Estudiantes de preparatoria o universidad que cursan materias complejas y buscan
     ```
 Abre tu navegador en http://localhost:3000 y registra un usuario para comenzar.
 
+### Pantalla de Login / Registro
 ![Pantalla de Login / Registro](./docs/1.png)
+
+### Interfaz Principal de Chat
 ![Interfaz Principal de Chat](./docs/1.1.png)
+
+### Selector de Materia
 ![Selector de Materia](./docs/2.1.png)
+
+### Selector de Modo
 ![Selector de Modo](./docs/2.2.png)
+
+### Conversación en acción
 ![Conversación en acción](./docs/3.png)
+
+### Historial
 ![Historial](./docs/4.png)
