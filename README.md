@@ -12,15 +12,6 @@ Estudiantes de preparatoria o universidad que cursan materias complejas y buscan
 - Inglés  
 - Programación  
 
-## 4️⃣ Funcionalidades del MVP
-| Funcionalidad          | Descripción                                                 |
-| ---------------------- | ----------------------------------------------------------- |
-| Chat tipo conversación | Input de texto y respuestas generadas por la IA             |
-| Selector de materia    | Para orientar mejor la respuesta del modelo                 |
-| Registro/Login         | Para guardar historial de estudio personalizado             |
-| Historial de preguntas | Ver qué ha preguntado el usuario anteriormente              |
-| Prompts dirigidos      | Adaptar la respuesta de la IA al contexto académico/materia |
-
 ## 5️⃣ Tecnologías utilizadas
 - **Backend:** Node.js, Express, SQLite  
 - **Frontend:** HTML5, CSS3, JavaScript (ES6+)  
