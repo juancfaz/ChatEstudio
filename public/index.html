@@ -1,33 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>ChatEstudio</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        #chat { border: 1px solid #ccc; padding: 10px; height: 300px; overflow-y: scroll; }
-        .message { margin: 5px 0; }
-        .user { color: blue; }
-        .bot { color: green; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ChatEstudio</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <h1>Bienvenido a ChatEstudio</h1>
+  <div id="authSection">
+    <h2>Registro</h2>
+    <form id="registerForm">
+      <input type="text" id="registerUsername" placeholder="Usuario" required />
+      <input type="password" id="registerPassword" placeholder="Contraseña" required />
+      <button type="submit">Registrar</button>
+    </form>
 
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="text" id="loginUsername" placeholder="Usuario" required />
+      <input type="password" id="loginPassword" placeholder="Contraseña" required />
+      <button type="submit">Entrar</button>
+    </form>
+  </div>
+
+  <div id="chatSection" style="display:none;">
+    <h1>Bienvenido a ChatEstudio</h1>
     <label for="subject">Selecciona la materia:</label>
     <select id="subject">
-        <option value="Matemáticas">Matemáticas</option>
-        <option value="Inglés">Inglés</option>
-        <option value="Programación">Programación</option>
+      <option value="Matemáticas">Matemáticas</option>
+      <option value="Inglés">Inglés</option>
+      <option value="Programación">Programación</option>
     </select>
+
+    <form id="chatForm">
+      <input type="text" id="messageInput" placeholder="Escribe tu pregunta..." required />
+      <button type="submit">Enviar</button>
+    </form>
 
     <div id="chat"></div>
 
-    <form id="chatForm">
-        <input type="text" id="message" placeholder="Escribe tu pregunta..." required>
-        <button type="submit">Enviar</button>
-    </form>
+    <h2>Historial de tus preguntas</h2>
+    <div id="history"></div>
 
-    <script src="app.js"></script>
+    <button id="logoutBtn">Cerrar sesión</button>
+  </div>
+
+  <script src="app.js"></script>
 </body>
 </html>
