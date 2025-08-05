@@ -35,12 +35,12 @@ Estudiantes de preparatoria o universidad que cursan materias complejas y buscan
 - Git instalado  
 
 ### Pasos
-    ```bash
+```bash
     git clone https://github.com/tu-usuario/chatestudio.git
     cd chatestudio
     npm install
     npm start
-    ```
+```
 Abre tu navegador en http://localhost:3000 y registra un usuario para comenzar.
 
 ![Pantalla de Login / Registro](./docs/1.png)
